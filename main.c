@@ -20,9 +20,22 @@ int main()
         for(int j = 0; j < col; j++)
         {
             arr[i * col + j] = (int)(rand() % 100);
-            printf("%d\n", arr[i * col + j]); // for printing random int numbers
+            printf("%d ", arr[i * col + j]); // for printing random int numbers
         }
+        printf("\n");
     }
+
+    // float* output = imgCvtGrayInttoFloat(arr, row, col);   // for output
+
+    for(int i = 0; i < row; i++)
+    {
+        for(int j = 0; j < col; j++)
+        {
+            // printf("%d ", output[i * col + j]); // for printing random int numbers
+        }
+        printf("\n");
+    }
+
 
     return 0;
 }
