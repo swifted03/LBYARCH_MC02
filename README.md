@@ -29,6 +29,14 @@ main.exe <row> <col>
 ```
 - executes main.exe 50 times and output execution time in .txt file
 
+## Execution Time
+```
+gcc average.c -o average.o
+```
+```
+average.exe
+```
+
 | row | column | Average Execution (ns) |
 |-----|--------|----------------------|
 | 10 | 10 | 374.00 |
