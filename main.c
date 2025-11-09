@@ -8,12 +8,15 @@ long long timespec_to_ns(struct timespec t) {
     return (long long)t.tv_sec * 1000000000LL + t.tv_nsec;
 }
 
-int main()
+int main(int argc, char* argv[])
 {
+    if (argc != 3)
+    {
+        return 1;
+    }
 
-    int row, col;
-    scanf("%d", &row);
-    scanf("%d", &col);
+    int row = atoi(argv[1]);
+    int col = atoi(argv[2]);
 
     int size = row * col;
     int* input = malloc(size * sizeof(int));
@@ -26,9 +29,9 @@ int main()
         for(int j = 0; j < col; j++)
         {
             input[i * col + j] = (int)(rand() % 10000) + 1;
-            // printf("%d ", input[i * col + j]); // for printing random int numbers
+            //printf("%d ", input[i * col + j]); // for printing random int numbers
         }
-        // printf("\n");
+        //printf("\n");
     }
 
     struct timespec start, end;
@@ -40,9 +43,9 @@ int main()
     {
         for(int j = 0; j < col; j++)
         {
-            // printf("%f ", output[i * col + j]); // for printing random int numbers
+            //printf("%f ", output[i * col + j]); // for printing random int numbers
         }
-        // printf("\n");
+        //printf("\n");
     }
     
     long long start_ns = timespec_to_ns(start);
@@ -50,7 +53,15 @@ int main()
 
     long long elapsed_ns = end_ns - start_ns;
 
-    printf("Execution time: %lld nanoseconds\n", elapsed_ns);
+    char filename[25];
+    snprintf(filename, sizeof(filename), "%d_%d.txt", row, col);
+
+    FILE* fp = fopen(filename, "a");
+    fprintf(fp, "%lld\n", elapsed_ns);
+    fclose(fp);
+
+    free(input);
+    free(output);
 
     return 0;
 }
