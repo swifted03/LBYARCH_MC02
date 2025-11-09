@@ -31,14 +31,15 @@ main.exe <row> <col>
 
 ## Execution Time
 ```
-gcc average.c -o average.o
+gcc average.c -o average.exe
 ```
 ```
 average.exe
 ```
 
-| row | column | Average Execution (ns) |
-|-----|--------|----------------------|
-| 10 | 10 | 374.00 |
-| 100 | 100 | 41390.00 |
-| 1000 | 1000 | 3311408.00 |
+| row | column | Count | Average Execution (ns) |
+|-----|--------|-------|----------------------|
+| 10 | 10 | 50 | 374.00 |
+| 100 | 100 | 50 | 41390.00 |
+| 1000 | 1000 | 50 | 3311408.00 |
+

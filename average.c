@@ -1,7 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-double compute_average(const char* filename) {
+typedef struct {
+    double average;
+    int count;
+} AvgResult;
+
+AvgResult compute_average(const char* filename) {
     double sum = 0.0;
     int count = 0;
     int value;
@@ -15,7 +20,10 @@ double compute_average(const char* filename) {
 
     fclose(file);
 
-    return sum / count;
+    AvgResult result;
+    result.average = sum / count;
+    result.count = count;
+    return result;
 }
 
 int main() {
@@ -26,13 +34,12 @@ int main() {
 
     FILE* output = fopen("average.txt", "w");
 
-    // Write Markdown table header
-    fprintf(output, "| row | column | Average Execution (ns) |\n");
-    fprintf(output, "|-----|--------|----------------------|\n");
+    fprintf(output, "| row | column | Count | Average Execution (ns) |\n");
+    fprintf(output, "|-----|--------|-------|----------------------|\n");
 
     for (int i = 0; i < num_files; i++) {
-        double avg = compute_average(files[i]);
-        fprintf(output, "| %d | %d | %.2f |\n", rows[i], cols[i], avg);
+        AvgResult res = compute_average(files[i]);
+        fprintf(output, "| %d | %d | %d | %.2f |\n", rows[i], cols[i], res.count, res.average);
     }
 
     fclose(output);
