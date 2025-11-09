@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-extern float* imgCvtGrayInttoFloat(float* arr, int row, int col);
+extern float* imgCvtGrayInttoFloat(int* arr, int row, int col);
 
 int main()
 {
@@ -11,7 +11,7 @@ int main()
     scanf("%d", &row);
     scanf("%d", &col);
 
-    float* arr = malloc(row * col * sizeof(float));
+    int* arr = malloc(row * col * sizeof(int));
 
     srand((unsigned)time(NULL));
 
@@ -19,8 +19,8 @@ int main()
     {
         for(int j = 0; j < col; j++)
         {
-            arr[i * col + j] = (float)(rand() % 100);
-            // printf("%.2f\n", arr[i * col + j]); // for printing random float numbers
+            arr[i * col + j] = (int)(rand() % 100);
+            printf("%d\n", arr[i * col + j]); // for printing random int numbers
         }
     }
 
