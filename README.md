@@ -28,3 +28,9 @@ main.exe <row> <col>
 1000_1000.bat
 ```
 - executes main.exe 50 times and output execution time in .txt file
+
+| row | column | Average Execution (ns) |
+|-----|--------|----------------------|
+| 10 | 10 | 374.00 |
+| 100 | 100 | 41390.00 |
+| 1000 | 1000 | 3311408.00 |
