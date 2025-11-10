@@ -28,7 +28,7 @@ int main(int argc, char* argv[])
     {
         for(int j = 0; j < col; j++)
         {
-            input[i * col + j] = (int)(rand() % 10000) + 1;
+            input[i * col + j] = (int)(rand() % 255) + 1;
             //printf("%d ", input[i * col + j]); // for printing random int numbers
         }
         //printf("\n");
