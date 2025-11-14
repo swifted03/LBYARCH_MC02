@@ -29,9 +29,9 @@ int main(int argc, char* argv[])
         for(int j = 0; j < col; j++)
         {
             input[i * col + j] = (int)(rand() % 256);
-            printf("%d, ", input[i * col + j]); // for printing random int numbers
+            // printf("%d, ", input[i * col + j]); // for printing random int numbers
         }   
-        printf("\n");
+        // printf("\n");
     }
 
     struct timespec start, end;
@@ -43,9 +43,9 @@ int main(int argc, char* argv[])
     {
         for(int j = 0; j < col; j++)
         {
-            printf("%.2f ", output[i * col + j]); // for printing random int numbers
+            // printf("%.2f ", output[i * col + j]); // for printing random int numbers
         }
-        printf("\n");
+        // printf("\n");
     }
     
     long long start_ns = timespec_to_ns(start);

@@ -14,13 +14,16 @@ imgCvtGrayInttoFloat:
     xor r9, r9 
     
 _loop:
+    cmp r9, rcx
+    jge end_func 
+    
     mov r15d, [rdx + r9 * 4] 
     cvtsi2ss xmm0, r15d 
     mulss xmm0, xmm1
     movss [rax + r9 * 4], xmm0 
+
     inc r9
-    
-    loop _loop
+    jmp _loop
     
 end_func:
 
