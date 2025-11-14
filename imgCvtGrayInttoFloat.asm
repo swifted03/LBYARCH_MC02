@@ -9,6 +9,7 @@ global imgCvtGrayInttoFloat
 
 imgCvtGrayInttoFloat:
     movss xmm1, [DIVISOR]
+    rcpss xmm1, xmm1
     xor r9, r9 
     
 _loop:
@@ -17,12 +18,11 @@ _loop:
     
     mov r15d, [rcx + r9 * 4] 
     cvtsi2ss xmm0, r15d 
-    divss xmm0, xmm1
+    mulss xmm0, xmm1
     movss [rax + r9 * 4], xmm0 
 
     inc r9
     jmp _loop
     
 end_func:
-    
     ret

@@ -39,7 +39,7 @@ int main(int argc, char* argv[])
     {
         for(int j = 0; j < col; j++)
         {
-            printf("%.2f ", (float)input[i * col + j]/ 255; // for printing random int numbers
+            printf("%.2f ", (float)input[i * col + j]/ 255); // for printing random int numbers
         }
         printf("\n");
     }
