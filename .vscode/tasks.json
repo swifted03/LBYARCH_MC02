@@ -6,7 +6,7 @@
         "type": "shell",
         // "command": "nasm -f win64 asmhello.asm -o asmhello.o; gcc asmhello.o sample.c -o sample.exe; ./sample.exe",
         // "command": "gcc main.c -o main.exe; ./main.exe",
-        "command": "nasm -f win64 imgCvtGrayInttoFloat.asm -o imgCvtGrayInttoFloat.o; gcc main_copy.c imgCvtGrayInttoFloat.o -o main.exe ;./main.exe 5 5",
+        "command": "nasm -f win64 imgCvtGrayInttoFloat.asm -o imgCvtGrayInttoFloat.o; gcc main.c imgCvtGrayInttoFloat.o -o main.exe ;./main.exe 5 5",
         "group": {
             "kind": "build",
             "isDefault": true

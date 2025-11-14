@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-extern float* imgCvtGrayInttoFloat(int* input, int size);
+extern float* imgCvtGrayInttoFloat(int size, int* input, float* output);
 
 long long timespec_to_ns(struct timespec t) {
     return (long long)t.tv_sec * 1000000000LL + t.tv_nsec;
@@ -20,7 +20,7 @@ int main(int argc, char* argv[])
 
     int size = row * col;
     int* input = malloc(size * sizeof(int));
-    // float* output = maKlloc(size * sizeof(float));
+    float* output = malloc(size * sizeof(float));
 
     srand((unsigned)time(NULL));
 
@@ -36,7 +36,7 @@ int main(int argc, char* argv[])
 
     struct timespec start, end;
     clock_gettime(CLOCK_MONOTONIC, &start);
-    float* output = imgCvtGrayInttoFloat(input, size);
+    output = imgCvtGrayInttoFloat(size, input, output);
     clock_gettime(CLOCK_MONOTONIC, &end);
 
     for(int i = 0; i < row; i++)
@@ -61,6 +61,7 @@ int main(int argc, char* argv[])
     fclose(fp);
 
     free(input);
+    free(output);
 
 
     return 0;
