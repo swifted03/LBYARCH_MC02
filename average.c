@@ -27,10 +27,10 @@ AvgResult compute_average(const char* filename) {
 }
 
 int main() {
-    const char* files[] = {"10_10.txt", "100_100.txt", "1000_1000.txt", "10000_10000.txt"};
-    const int rows[] = {10, 100, 1000, 10000};
-    const int cols[] = {10, 100, 1000, 10000};
-    const int num_files = 4;
+    const char* files[] = {"10_10.txt", "100_100.txt", "1000_1000.txt"};
+    const int rows[] = {10, 100, 1000};
+    const int cols[] = {10, 100, 1000};
+    const int num_files = 3;
 
     FILE* output = fopen("average.txt", "w");
 

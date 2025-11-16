@@ -9,19 +9,22 @@ global imgCvtGrayInttoFloat
 
 imgCvtGrayInttoFloat:
     movss xmm1, [DIVISOR]
+    rcpss xmm1, xmm1
+    mov rax, r8
     xor r9, r9 
     
 _loop:
-    cmp r9, r8
+    cmp r9, rcx
     jge end_func 
     
-    mov eax, [rcx + r9 * 4] 
-    cvtsi2ss xmm0, eax 
-    divss xmm0, xmm1
-    movss [rdx + r9 * 4], xmm0 
+    mov r15d, [rdx + r9 * 4] 
+    cvtsi2ss xmm0, r15d 
+    mulss xmm0, xmm1
+    movss [rax + r9 * 4], xmm0 
 
     inc r9
     jmp _loop
     
 end_func:
+
     ret
