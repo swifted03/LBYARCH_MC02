@@ -52,3 +52,8 @@ average.exe
 | 100 | 100 | 50 | 28150.00 |
 | 1000 | 1000 | 50 | 2147872.00 |
 
+## Program Output
+<img width="597" height="962" alt="image" src="https://github.com/user-attachments/assets/3ae1f48e-f0c6-4cb8-930b-601ff51d3594" />
+
+## Short Video Walkthrough
+Here is a short [video](https://drive.google.com/file/d/1KW9bXQ4E4he8N3d05Sq98VKiRhDMRHak/view?usp=sharing) related to this program.
