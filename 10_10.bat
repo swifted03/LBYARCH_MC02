@@ -1,4 +1,4 @@
 @echo off
 for /L %%i in (1,1,50) do (
-    .\main.exe 10 10
+    (echo 2 && echo 10 && echo 10) | .\main.exe
 )

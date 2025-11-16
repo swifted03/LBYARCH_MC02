@@ -10,12 +10,21 @@ gcc main.c imgCvtGrayInttoFloat.o -o main.exe
 ```
 
 ```
-main.exe <row> <col>
+main.exe
 ```
 
 ## Inputs
-- `row` (integer): number of rowss
-- `col` (integer): number of columns
+The user will be prompted to choose from two choices:
+1. `1. Load from text file`: Asks for a filename. The file must be formatted as:
+```
+<row> <col>
+<pixel1> <pixel2> ...
+<pixelN> ...
+```
+
+2. `2. Generate random numbers`: Asks for `row` and `col` size.
+
+After running, the program will print the execution time for both the Assembly and C functions, along with a "PASSED" correctness check.
 
 ## Bat Files
 ```
