@@ -1,3 +1,5 @@
+@echo off
+
 for %%F in (
     "5_5.txt"
     "5_5_C.txt"
