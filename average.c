@@ -27,11 +27,11 @@ AvgResult compute_average(const char* filename) {
 }
 
 int main() {
-    const char* files[] = {"10_10.txt", "100_100.txt", "1000_1000.txt"};
-    const char* c_files[] = {"10_10_C.txt", "100_100_C.txt", "1000_1000_C.txt"};
-    const int rows[] = {10, 100, 1000};
-    const int cols[] = {10, 100, 1000};
-    const int num_files = 3;
+    const char* files[] = {"10_10.txt", "100_100.txt", "1000_1000.txt", "5000_5000.txt"};
+    const char* c_files[] = {"10_10_C.txt", "100_100_C.txt", "1000_1000_C.txt", "5000_5000_C.txt"};
+    const int rows[] = {10, 100, 1000, 5000};
+    const int cols[] = {10, 100, 1000, 5000};
+    const int num_files = 4;
 
     FILE* output = fopen("average.txt", "w");
 
@@ -42,14 +42,9 @@ int main() {
         AvgResult res_asm = compute_average(files[i]);
         AvgResult res_c = compute_average(c_files[i]);
         
-        double difference = 0.0;
-        if (res_asm.average < res_c.average) {
-            difference = (double)res_c.average / (double)res_asm.average;
-        } else {
-            difference = (double)res_asm.average / (double)res_c.average;
-        }
+        double difference = (double)res_asm.average / (double)res_c.average;
 
-        fprintf(output, "| %d | %d | %d | %.2f |\n", rows[i], cols[i], res_asm.count, res_asm.average, res_c.average, difference);
+        fprintf(output, "| %d | %d | %d | %.2f | %.2f | %.2f |\n", rows[i], cols[i], res_asm.count, res_asm.average, res_c.average, difference);
     }
 
     fclose(output);

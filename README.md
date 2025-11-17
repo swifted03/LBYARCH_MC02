@@ -36,7 +36,18 @@ After running, the program will print the execution time for both the Assembly a
 ```
 1000_1000.bat
 ```
-- executes main.exe 50 times and output execution time in .txt file
+```
+5000_5000.bat
+```
+```
+reset.bat
+```
+```
+run.bat
+```
+- 10_10.bat, 100_100.bat...: executes main.exe 50 times and output execution time in .txt file
+- run.bat: to run all .bat files to generate output
+- reset.bat: to delete all generated output files
 
 ## Execution Time
 ```
@@ -46,11 +57,14 @@ gcc average.c -o average.exe
 average.exe
 ```
 
-| row | column | Count | Average Execution (ns) |
-|-----|--------|-------|----------------------|
-| 10 | 10 | 50 | 448.00 |
-| 100 | 100 | 50 | 28150.00 |
-| 1000 | 1000 | 50 | 2147872.00 |
+| Row | Column | Count | Average Execution ASM (ns) | Average Execution C (ns) | Difference |
+|-----|--------|-------|----------------------|-------------------|-----------|
+| 10 | 10 | 50 | 366.00 | 330.00 | 1.11 |
+| 100 | 100 | 50 | 28108.00 | 28718.00 | 0.98 |
+| 1000 | 1000 | 50 | 1804776.00 | 1990732.00 | 0.91 |
+| 5000 | 5000 | 50 | 42635154.00 | 47093764.00 | 0.91 |
+
+- Values <1 indicate ASM is more efficient
 
 ## Program Output
 <img width="597" height="962" alt="image" src="https://github.com/user-attachments/assets/3ae1f48e-f0c6-4cb8-930b-601ff51d3594" />

@@ -27,14 +27,89 @@ int main(int argc, char* argv[])
 
     srand((unsigned)time(NULL));
 
-    for(int i = 0; i < row; i++)
+    printf("Select input method:\n");
+    printf("  1. Load from text file\n");
+    printf("  2. Generate random numbers\n");
+    printf("Enter your choice (1 or 2): ");
+    
+    while (scanf("%d", &choice) != 1 || (choice != 1 && choice != 2)) {
+        printf("Invalid input. Please enter 1 or 2: ");
+        while (getchar() != '\n'); 
+    }
+
+    if (choice == 1)
     {
-        for(int j = 0; j < col; j++)
-        {
-            input[i * col + j] = (int)(rand() % 10000) + 1;
-            //printf("%d ", input[i * col + j]); // for printing random int numbers
+        char filename[100];
+        printf("Enter the input filename: ");
+        scanf("%99s", filename);
+
+        FILE* file = fopen(filename, "r");
+        if (file == NULL) {
+            perror("Error opening file");
+            return 1;
         }
-        //printf("\n");
+
+        if (fscanf(file, "%d %d", &row, &col) != 2) {
+            printf("Error: Could not read row/col from file.\n");
+            fclose(file);
+            return 1;
+        }
+        printf("File specifies size: %d x %d\n", row, col);
+
+        size = row * col;
+        input = malloc(size * sizeof(int));
+        output = malloc(size * sizeof(float));
+
+        if (input == NULL || output == NULL) {
+            printf("Error: Memory allocation failed.\n");
+            fclose(file);
+            return 1;
+        }
+
+        for (int i = 0; i < size; i++) {
+            if (fscanf(file, "%d", &input[i]) != 1) {
+                printf("Error reading pixel data at index %d.\n", i);
+                fclose(file);
+                free(input);
+                free(output);
+                return 1;
+            }
+        }
+        fclose(file);
+        printf("Successfully read pixel data from %s\n", filename);
+    }
+    else
+    {
+        printf("Enter row size: ");
+        scanf("%d", &row);
+        printf("Enter col size: ");
+        scanf("%d", &col);
+        
+        size = row * col;
+        input = malloc(size * sizeof(int));
+        output = malloc(size * sizeof(float));
+
+        if (input == NULL || output == NULL) {
+            printf("Error: Memory allocation failed.\n");
+            return 1;
+        }
+
+        printf("Input:\n"); 
+        for(int i = 0; i < row; i++) {
+            for(int j = 0; j < col; j++) {
+                input[i * col + j] = (int)(rand() % 256);
+                printf("%d ", input[i * col + j]); // for printing random int
+            }
+            printf("\n");   
+        }
+    }
+
+    output_c = malloc(size * sizeof(float));
+    if (output_c == NULL) {
+        printf("Error: Memory allocation failed for C output.\n");
+        free(input);
+        free(output);
+        return 1;
     }
 
     struct timespec start, end;
@@ -55,7 +130,7 @@ int main(int argc, char* argv[])
     {
         for(int j = 0; j < col; j++)
         {
-            printf("%.2f ", output[i * col + j]); // for printing random int numbers
+            printf("%.2f ", output[i * col + j]); 
         }
         printf("\n");
     }
@@ -96,6 +171,12 @@ int main(int argc, char* argv[])
 
     FILE* fp = fopen(filename, "a");
     fprintf(fp, "%lld\n", elapsed_ns_asm);
+    fclose(fp);
+
+    snprintf(filename, sizeof(filename), "%d_%d_C.txt", row, col);
+
+    fp = fopen(filename, "a");
+    fprintf(fp, "%lld\n", elapsed_ns_c);
     fclose(fp);
 
     free(input);
